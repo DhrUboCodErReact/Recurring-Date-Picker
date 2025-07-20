@@ -1,0 +1,89 @@
+/* Calendar Container */
+.react-calendar {
+  border: none;
+  width: 100%;
+  max-width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: #1f2937; /* gray-800 */
+  background: linear-gradient(135deg, #ffffff, #f0f9ff); /* light blue-ish white */
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(4px);
+}
+
+/* Navigation Styling */
+.react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.react-calendar__navigation button {
+  background: linear-gradient(to right, #e0f2fe, #bae6fd);
+  border: none;
+  color: #1e3a8a; /* blue-900 */
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.react-calendar__navigation button:hover {
+  background: linear-gradient(to right, #93c5fd, #60a5fa); /* blue-300 to blue-400 */
+  color: #ffffff;
+}
+
+/* Weekday Headers */
+.react-calendar__month-view__weekdays {
+  text-align: center;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #6b7280; /* gray-500 */
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  padding: 0.25rem;
+}
+
+/* Day Tiles */
+.react-calendar__tile {
+  padding: 14px 0;
+  border-radius: 14px;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(to top right, #f9fafb, #f1f5f9); /* soft light gradient */
+  transition: all 0.25s ease-in-out;
+  box-shadow: inset 0 0 0 transparent;
+}
+
+.react-calendar__tile:enabled:hover {
+  background: linear-gradient(to right, #dbeafe, #bfdbfe);
+  color: #1e40af;
+  font-weight: 500;
+  transform: scale(1.03);
+}
+
+/* Highlighted Tile (Selected/Generated Dates) */
+.react-calendar__tile.highlight {
+  background: linear-gradient(to right, #3b82f6, #1d4ed8) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  transform: scale(1.05);
+}
+
+/* Adjacent Month Days */
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: #9ca3af;
+  opacity: 0.5;
+}
