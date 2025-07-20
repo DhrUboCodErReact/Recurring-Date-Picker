@@ -1,36 +1,200 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🗓️ Recurring Date Picker
 
-## Getting Started
+A **reusable**, **customizable** React component for selecting recurring date patterns — inspired by **TickTick** and **Google Calendar**.
 
-First, run the development server:
+![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue.svg)
+![TailwindCSS](https://img.shields.io/badge/Style-TailwindCSS-06B6D4)
+![Next.js](https://img.shields.io/badge/Framework-Next.js-black)
+![Zustand](https://img.shields.io/badge/State-Zustand-yellowgreen)
+![License](https://img.shields.io/github/license/DhrUboCodErReact/recurring-date-picker)
+
+---
+
+## 🔗 Live Demo
+
+> **Coming Soon** – Stay tuned for the deployment link!
+
+---
+
+## ✨ Features
+
+- 📅 Select recurring patterns: **Daily**, **Weekly**, **Monthly**
+- 📆 Pick **start** and **end** dates
+- ✅ Choose specific **weekdays** for recurrence
+- 🚫 Exclude specific **skip dates**
+- 🔍 Preview selected recurring dates on a calendar
+- 💡 Real-time state sync & updates
+- ⚙️ Fully typed with **TypeScript**
+- 🎨 Styled using **Tailwind CSS**
+- 🧠 State managed via **Zustand**
+
+---
+
+## 📦 Tech Stack
+
+| Tech               | Description                        |
+|--------------------|------------------------------------|
+| **React**          | UI library                         |
+| **Next.js**        | App framework                      |
+| **TypeScript**     | Type-safe coding                   |
+| **Tailwind CSS**   | Utility-first CSS                  |
+| **Zustand**        | Lightweight global state management|
+| **React Calendar** | Recurring calendar view            |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/DhrUboCodErReact/recurring-date-picker.git
+cd recurring-date-picker
+```
+
+### 2.  Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Start the Development Server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+recurring-date-picker/
+├── src/
+│   ├── app/
+│   │   └── page.tsx                     # 🟢 Main Next.js page (entry point)
+│   │
+│   ├── components/
+│   │   ├── RecurringDatePicker.tsx     # ✅ Main wrapper component (core UI & logic)
+│   │   └── RecurringDateComponents/    # 🔧 Subcomponents used inside RecurringDatePicker
+│   │       ├── RecurringOptions.tsx        # Selector for Daily / Weekly / Monthly
+│   │       ├── DateRangePicker.tsx         # Start and end date input
+│   │       ├── WeeklyDaysSelector.tsx      # Checkboxes for weekdays (Mon–Sun)
+│   │       ├── SkipDatesSelector.tsx       # Input to skip specific dates
+│   │       └── CalendarPreview.tsx         # Visual preview of generated recurring dates
+│   │
+│   ├── store/
+│   │   └── useRecurringStore.ts         # Zustand store for shared state
+│   │
+│   ├── utils/
+│   │   └── recurrenceHelpers.ts         # 🧠 Core logic for generating recurrence dates
+│   │
+│   └── tests/
+│       └── recurrenceHelpers.test.ts    # ✅ Unit tests for recurrence logic
+│
+├── public/                              # Static assets (e.g., favicons, images)
+│
+├── README.md                            # Project documentation
+├── tailwind.config.ts                   # Tailwind CSS configuration
+├── tsconfig.json                        # TypeScript configuration
+├── jest.config.ts                       # Jest configuration for testing
+└── package.json                         # Project dependencies and scripts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧠 Component Breakdown
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ✅ `RecurringDatePicker.tsx`
+- Main orchestrator
+- Combines all subcomponents
+- Binds everything using Zustand store
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 🔁 `RecurringOptions.tsx`
+- **Dropdown/radio button** interface
+- Lets user pick: `Daily`, `Weekly`, or `Monthly` recurrence pattern
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📅 `DateRangePicker.tsx`
+- Two date pickers:
+  - `Start Date`
+  - `End Date`
+- Controlled via Zustand
+
+---
+
+### 📆 `WeeklyDaysSelector.tsx`
+- Displays weekdays (`S M T W T F S`) as toggle buttons
+- Active in **Weekly** mode only
+- Updates selected weekdays in global store
+
+---
+
+### ❌ `SkipDatesSelector.tsx`
+- Allows user to pick one or more dates to **exclude**
+- Dates are pushed into `skipDates[]`
+- A calendar-based UI for intuitive UX
+
+---
+
+### 👀 `CalendarPreview.tsx`
+- Renders a real-time preview of recurring dates
+- Excludes skipped dates
+- Useful for visual feedback before saving the schedule
+
+---
+
+## 🔗 Logic
+
+### 🧠 `generateRecurringDates.ts`
+- Pure function
+- Inputs:
+  - `recurrenceType` (daily/weekly/monthly)
+  - `dateRange` (`startDate`, `endDate`)
+  - `weekDays` (if weekly)
+  - `skipDates`
+- Output:
+  - Array of all valid recurring dates
+
+---
+
+## ⚙️ State Management (Zustand Store)
+
+### `useRecurringStore.ts`
+Stores:
+- `recurrenceType`
+- `startDate`, `endDate`
+- `weekDays[]`
+- `skipDates[]`
+- `generatedDates[]`
+
+Provides:
+- `setRecurrenceType`
+- `setDateRange`
+- `toggleWeekday`
+- `addSkipDate`
+- `generateDates()`
+
+---
+
+## 🧪 Testing
+
+Located in `__tests__/RecurringDateComponents/`
+
+- ✅ All components tested using `Jest` and `@testing-library/react`
+- 🧪 Tested for:
+  - Rendering correctness
+  - Zustand store updates
+  - UI interactions (e.g., button clicks, date changes)
+- ✅ Mocked Zustand store where required
+
+---
+
+
+
