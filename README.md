@@ -92,7 +92,8 @@ recurring-date-picker/
 │   │   └── recurrenceHelpers.ts         # 🧠 Core logic for generating recurrence dates
 │   │
 │   └── tests/
-│       └── recurrenceHelpers.test.ts    # ✅ Unit tests for recurrence logic
+│       ├── recurrenceHelpers.test.ts        # ✅ Unit tests for recurrence logic
+│       └── RecurringDatePicker.test.ts      # ✅ Integrated test for full component behavior
 │
 ├── public/                              # Static assets (e.g., favicons, images)
 │
@@ -101,6 +102,7 @@ recurring-date-picker/
 ├── tsconfig.json                        # TypeScript configuration
 ├── jest.config.ts                       # Jest configuration for testing
 └── package.json                         # Project dependencies and scripts
+
 ```
 
 
