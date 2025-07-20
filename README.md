@@ -12,7 +12,8 @@ A **reusable**, **customizable** React component for selecting recurring date pa
 
 ## 🔗 Live Demo
 
-> `` Link - https://recurring-date-picker-beta.vercel.app/  ``
+> [Click here to view the live app](https://recurring-date-picker-beta.vercel.app/)
+
 
 ---
 
